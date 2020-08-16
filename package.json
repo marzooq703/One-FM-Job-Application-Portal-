@@ -1,0 +1,26 @@
+{
+	"name": "one-fm-application-portal",
+	"version": "1.0.0",
+	"description": "This is Job Application Form, made for the purpose of interview process in one-fm",
+	"main": "index.html",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/marzooq703/One-FM-Job-Application-Portal-.git"
+	},
+	"keywords": [
+		"interview",
+		"process",
+		"job",
+		"application",
+		"portal"
+	],
+	"author": "Hassan Marzooq",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/marzooq703/One-FM-Job-Application-Portal-/issues"
+	},
+	"homepage": "https://github.com/marzooq703/One-FM-Job-Application-Portal-#readme"
+}
