@@ -12,24 +12,50 @@
 </head>
 
 <body>
-    <div class="row sections">
-        <div class="active-section active-background">PERSONAL</div>
-        <div class="col-sm">CONTACT</div>
+    <!-- <div class="row sections">
+        <div class="active-section active-background">APPLICANT PERSONAL DETAILS &#10095;</div>
+        <div class="col-sm">CONTACT DETAILS</div>
         <div class="col-sm">LANGUAGE</div>
         <div class="col-sm">PASSPORT</div>
-        <div class="col-sm">VISA</div>
-        <div class="col-sm">EMPLOYMENT</div>
-        <div class="col-sm">EDUCATION</div>
+        <div class="col-sm">VISA AND RESIDENCY</div>
+        <div class="col-sm">CURRENT EMPLOYMENT</div>
+        <div class="col-sm">EDUCATIONAL QUALIFICATION</div>
         <div class="col-sm">WORK DETAILS</div>
         <div class="col-sm">BASIC SKILL</div>
-        <div class="col-sm">DOCUMENTS</div>
-        <!-- <div class="sections">top row</div> -->
-    </div>
+        <div class="col-sm">DOCUMENTS REQUIRED</div>
+    </div> -->
     <div class="container">
-        <div class="header">
-            <h1 class="header-text">ONE FM - Job Application</h1>
+        <div class="inner-container">
+            <div class="header">
+                <h3 class="header-text"><b>ONE FM</b> - Job Application &#10095; LOGIN</h3>
+                <!-- <h3 class="header-text">LOGIN</h3> -->
+            </div> <br />
+            <div class="form-group">
+                <label for="login-email">Email address</label>
+                <input type="email" class="form-control" id="login-email" placeholder="Enter Your email id">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" id="password" class="form-control" placeholder="Password">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" onclick="showPassword()">
+                        <img src="./Asserts/images/eye-close.svg" height="20" id="show-password" />
+                    </button>
+                </div>
+            </div>
+            <small id="emailHelp" class="form-text text-muted">Too lazy to type the password again? Click the Eye
+                and check the password to avoid it!</small>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password">
+            </div>
+            <button class="custom-buttom" onclick="login()">Submit
+                <img src="./Asserts/images/right-arrow-hallow.png" class="submit-arrow" height="40px" />
+            </button>
         </div>
     </div>
+    <script src="./Asserts/scripts.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>
