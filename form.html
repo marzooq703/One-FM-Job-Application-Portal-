@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One FM Job Application Portal | FORM</title>
+    <link rel="stylesheet" href="./Asserts/style.css" />
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- <div class="row sections">
+        <div class="active-section active-background">APPLICANT PERSONAL DETAILS &#10095;</div>
+        <div class="col-sm">CONTACT DETAILS</div>
+        <div class="col-sm">LANGUAGE</div>
+        <div class="col-sm">PASSPORT</div>
+        <div class="col-sm">VISA AND RESIDENCY</div>
+        <div class="col-sm">CURRENT EMPLOYMENT</div>
+        <div class="col-sm">EDUCATIONAL QUALIFICATION</div>
+        <div class="col-sm">WORK DETAILS</div>
+        <div class="col-sm">BASIC SKILL</div>
+        <div class="col-sm">DOCUMENTS REQUIRED</div>
+    </div> -->
+    <div class="container main-area">
+        <div class="inner-container">
+            <div class="header">
+                <h3 class="header-text"><b>ONE FM</b> - Job Application &#10095; FORM</h3>
+                <!-- <h3 class="header-text">LOGIN</h3> -->
+            </div> <br />
+            <div id="form-app"></div>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="section-details">
+            <p class="big-number">You're Currently Filling</p>
+            <p class="big-number" id="section-name">Job Opening:</p> &#10095;
+            <h2 class="big-number" id="section-remaining">10</h2> more sections
+        </div>
+    </div>
+    <div class="container">
+        <div class="row sections">
+            <div class="button-container">
+                <button class="previous-button" onclick="previous()">Back
+                    <img src="./Asserts/images/right-arrow-hallow.png" class="submit-arrow" height="30px" />
+                </button>
+            </div>
+            <div class="button-container">
+                <button class="custom-button next-button" onclick="next()">Next
+                    <img src="./Asserts/images/right-arrow-hallow.png" class="submit-arrow" height="30px" />
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./Asserts/scripts.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>form()</script>
+</body>
+
+</html>

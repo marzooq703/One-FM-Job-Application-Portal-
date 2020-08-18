@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One FM Job Application Portal</title>
+    <meta name="google-signin-client_id" content="34188756959-86lecq1abbjg09a0licraa4589c88jjk.apps.googleusercontent.com">
+    <title>One FM Job Application Portal | LOGIN</title>
     <link rel="stylesheet" href="./Asserts/style.css" />
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -12,31 +13,20 @@
 </head>
 
 <body>
-    <!-- <div class="row sections">
-        <div class="active-section active-background">APPLICANT PERSONAL DETAILS &#10095;</div>
-        <div class="col-sm">CONTACT DETAILS</div>
-        <div class="col-sm">LANGUAGE</div>
-        <div class="col-sm">PASSPORT</div>
-        <div class="col-sm">VISA AND RESIDENCY</div>
-        <div class="col-sm">CURRENT EMPLOYMENT</div>
-        <div class="col-sm">EDUCATIONAL QUALIFICATION</div>
-        <div class="col-sm">WORK DETAILS</div>
-        <div class="col-sm">BASIC SKILL</div>
-        <div class="col-sm">DOCUMENTS REQUIRED</div>
-    </div> -->
-    <div class="container">
+    <div class="container main-area">
         <div class="inner-container">
             <div class="header">
                 <h3 class="header-text"><b>ONE FM</b> - Job Application &#10095; LOGIN</h3>
                 <!-- <h3 class="header-text">LOGIN</h3> -->
             </div> <br />
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
             <div class="form-group">
                 <label for="login-email">Email address</label>
                 <input type="email" class="form-control" id="login-email" placeholder="Enter Your email id">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                <small id="email-help" class="form-text text-muted">We'll never share your email with anyone
                     else.</small>
             </div>
-            <div class="input-group mb-3">
+            <div class="input-group">
                 <input type="password" id="password" class="form-control" placeholder="Password">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" onclick="showPassword()">
@@ -44,16 +34,18 @@
                     </button>
                 </div>
             </div>
-            <small id="emailHelp" class="form-text text-muted">Too lazy to type the password again? Click the Eye
+            <small id="password-help" class="form-text text-muted mb-3">Too lazy to type the password again? Click the
+                Eye
                 and check the password to avoid it!</small>
             <div class="input-group mb-3">
                 <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password">
             </div>
-            <button class="custom-buttom" onclick="login()">Submit
+            <button class="custom-button" onclick="login()">Submit
                 <img src="./Asserts/images/right-arrow-hallow.png" class="submit-arrow" height="40px" />
             </button>
         </div>
     </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="./Asserts/scripts.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
