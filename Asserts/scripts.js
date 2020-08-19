@@ -228,6 +228,7 @@ function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	let fullName = profile.getName().split(" ");
 	let email = profile.getEmail();
+	details = { name: fullName, email };
 	// let firstName = fullName[0];
 	// let lastName, secondName;
 	// if (fullName.length > 1)
@@ -235,14 +236,12 @@ function onSignIn(googleUser) {
 	// else
 	// 	lastName = fullName[1];
 	window.localStorage.setItem("oneFmToken", "dummyTokenAsOfNow");
-	window.localStorage.setItem("googleName", fullName);
-	window.localStorage.setItem("googleEmail", email);
+	window.localStorage.setItem("googleDetails", details);
 	window.localStorage.setItem("sectionState", "section_0");
 	window.location = "form.html";
 }
 const form = () => {
-	console.log(window.localStorage.getItem("googleName"));
-	console.log(window.localStorage.getItem("googleEmail"));
+	console.log(window.localStorage.getItem("googleDetails"));
 	if (!window.localStorage.getItem("oneFmToken")) {
 		alert("Please Login");
 		window.location = "./";
