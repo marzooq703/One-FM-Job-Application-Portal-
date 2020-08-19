@@ -251,16 +251,10 @@ const form = () => {
 		alert("Please Login");
 		window.location = "./";
 	}
-	if (window.localStorage.getItem("sectionState") == "section_0") {
-		window.localStorage.setItem("sectionState", "section_1");
-	}
 	const fieldsData = {
-		// 	section_0: `<div class="form-group">
-		// 	<label for="exampleFormControlSelect1">Job Openings</label>
-		// 	<select class="form-control" id="exampleFormControlSelect1">
-		// 		${state.jobOpeningsFields.dropdownItems.map((a) => `<option>${a.name}</option>`)}
-		// 	</select>
-		// </div>`,
+		section_0: `<div class="form-group">
+			<h1>Login Success!</h1>
+		</div>`,
 		section_1: state.section1Fields
 			.map(
 				(a) => `<div class="form-group">
