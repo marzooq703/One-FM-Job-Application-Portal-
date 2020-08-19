@@ -224,7 +224,7 @@ function onSignIn(googleUser) {
 	else
 		lastName = fullName[1];
 	window.localStorage.setItem("oneFmToken", "dummyTokenAsOfNow");
-	window.localStorage.setItem("googleDetails", { fullName: profile.getId(), firstName, secondName, lastName, email: profile.getEmail() });
+	window.localStorage.setItem("googleDetails", fullName);
 	window.localStorage.setItem("sectionState", "section_0");
 	window.location = "form.html";
 }
