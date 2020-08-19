@@ -216,7 +216,7 @@ const login = () => {
 };
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
-	let fullName = profile.getId().split(" ");
+	let fullName = profile.getName().split(" ");
 	let firstName = fullName[0];
 	let lastName, secondName;
 	if (fullName.length > 1)
@@ -224,7 +224,7 @@ function onSignIn(googleUser) {
 	else
 		lastName = fullName[1];
 	window.localStorage.setItem("oneFmToken", "dummyTokenAsOfNow");
-	window.localStorage.setItem("googleDetails", fullName);
+	window.localStorage.setItem("googleDetails", { firstName, secondName, lastName, email: profile.getEmail() });
 	window.localStorage.setItem("sectionState", "section_0");
 	window.location = "form.html";
 }
