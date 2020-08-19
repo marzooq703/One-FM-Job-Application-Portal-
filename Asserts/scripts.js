@@ -236,12 +236,13 @@ function onSignIn(googleUser) {
 	// else
 	// 	lastName = fullName[1];
 	window.localStorage.setItem("oneFmToken", "dummyTokenAsOfNow");
-	window.localStorage.setItem("googleDetails", details);
+	window.localStorage.setItem("googleDetails", JSON.stringify(details));
 	window.localStorage.setItem("sectionState", "section_0");
 	window.location = "form.html";
 }
 const form = () => {
-	console.log(window.localStorage.getItem("googleDetails"));
+	let googleDetails = window.localStorage.getItem("googleDetails");
+	console.log(JSON.parse(googleDetails));
 	if (!window.localStorage.getItem("oneFmToken")) {
 		alert("Please Login");
 		window.location = "./";
