@@ -48,9 +48,9 @@ const state = {
 		],
 	},
 	section1Fields: [
-		{ name: "First Name", id: "first-name", type: "text", defaultValue: window.localStorage.getItem("googleDetails").firstName },
-		{ name: "Second Name", id: "second-name", type: "text", defaultValue: window.localStorage.getItem("googleDetails").secondName },
-		{ name: "Last Name", id: "last-name", type: "text", defaultValue: window.localStorage.getItem("googleDetails").lastName },
+		{ name: "First Name", id: "first-name", type: "text" },
+		{ name: "Second Name", id: "second-name", type: "text" },
+		{ name: "Last Name", id: "last-name", type: "text" },
 		{ name: "Gender", id: "gender", type: "text" },
 		{ name: "Religion", id: "religion", type: "text" },
 		{ name: "Date Of Birth", id: "dob", label: "Date of Birth on the Passport", type: "date" },
@@ -166,6 +166,16 @@ const state = {
 const serverData = async () => {
 	const jobOpenings = await fetch("https://dev.one-fm.com/api/resource/Job Opening");
 };
+const selectPosting = () => {
+	const selectPost = `<div class="form-group">
+	<label for="exampleFormControlSelect1">Job Openings</label>
+	<select class="form-control" id="exampleFormControlSelect1">
+		${state.jobOpeningsFields.dropdownItems.map((a) => `<option>${a.name}</option>`)}
+	</select>
+	</div>`;
+	let selectPostElement = document.getElementById("selectPost");
+	selectPostElement.innerHTML = selectPost;
+};
 serverData();
 const showPassword = () => {
 	const closedEye = "./Asserts/images/eye-close.svg";
@@ -217,34 +227,36 @@ const login = () => {
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	let fullName = profile.getName().split(" ");
-	let firstName = fullName[0];
-	let lastName, secondName;
-	if (fullName.length > 1)
-		secondName = fullName[1], lastName = fullName[2];
-	else
-		lastName = fullName[1];
+	let email = profile.getEmail();
+	// let firstName = fullName[0];
+	// let lastName, secondName;
+	// if (fullName.length > 1)
+	// 	secondName = fullName[1], lastName = fullName[2];
+	// else
+	// 	lastName = fullName[1];
 	window.localStorage.setItem("oneFmToken", "dummyTokenAsOfNow");
-	window.localStorage.setItem("googleDetails", { firstName, secondName, lastName, email: profile.getEmail() });
+	window.localStorage.setItem("googleName", fullName);
+	window.localStorage.setItem("googleEmail", email);
 	window.localStorage.setItem("sectionState", "section_0");
 	window.location = "form.html";
 }
 const form = () => {
-	console.log(window.localStorage.getItem("googleDetails").firstName);
-	console.log(window.localStorage.getItem("googleDetails").secondName);
-	console.log(window.localStorage.getItem("googleDetails").lastName);
-	console.log(window.localStorage.getItem("googleDetails").fullName);
-	console.log(window.localStorage.getItem("googleDetails").email);
+	console.log(window.localStorage.getItem("googleName"));
+	console.log(window.localStorage.getItem("googleEmail"));
 	if (!window.localStorage.getItem("oneFmToken")) {
 		alert("Please Login");
 		window.location = "./";
 	}
+	if (window.localStorage.getItem("sectionState") == "section_0") {
+		window.localStorage.setItem("sectionState", "section_1");
+	}
 	const fieldsData = {
-		section_0: `<div class="form-group">
-		<label for="exampleFormControlSelect1">Job Openings</label>
-		<select class="form-control" id="exampleFormControlSelect1">
-			${state.jobOpeningsFields.dropdownItems.map((a) => `<option>${a.name}</option>`)}
-		</select>
-	</div>`,
+		// 	section_0: `<div class="form-group">
+		// 	<label for="exampleFormControlSelect1">Job Openings</label>
+		// 	<select class="form-control" id="exampleFormControlSelect1">
+		// 		${state.jobOpeningsFields.dropdownItems.map((a) => `<option>${a.name}</option>`)}
+		// 	</select>
+		// </div>`,
 		section_1: state.section1Fields
 			.map(
 				(a) => `<div class="form-group">
@@ -360,7 +372,8 @@ const previous = () => {
 	const remainingSections = document.getElementById("section-remaining");
 	if (window.localStorage.getItem("sectionState") == "section_0") {
 		window.location = "./";
-	} else {
+	}
+	else {
 		const currentSectionNumber = window.localStorage
 			.getItem("sectionState")
 			.charAt(window.localStorage.getItem("sectionState").length - 1);
