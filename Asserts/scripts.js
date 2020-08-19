@@ -224,12 +224,16 @@ function onSignIn(googleUser) {
 	else
 		lastName = fullName[1];
 	window.localStorage.setItem("oneFmToken", "dummyTokenAsOfNow");
-	window.localStorage.setItem("googleDetails", { firstName, secondName, lastName, email: profile.getEmail() });
+	window.localStorage.setItem("googleDetails", { fullName: profile.getId(), firstName, secondName, lastName, email: profile.getEmail() });
 	window.localStorage.setItem("sectionState", "section_0");
 	window.location = "form.html";
 }
 const form = () => {
-	console.log(window.localStorage.getItem("googleDetails"));
+	console.log(window.localStorage.getItem("googleDetails").firstName);
+	console.log(window.localStorage.getItem("googleDetails").secondName);
+	console.log(window.localStorage.getItem("googleDetails").lastName);
+	console.log(window.localStorage.getItem("googleDetails").fullName);
+	console.log(window.localStorage.getItem("googleDetails").email);
 	if (!window.localStorage.getItem("oneFmToken")) {
 		alert("Please Login");
 		window.location = "./";
