@@ -48,9 +48,9 @@ const state = {
 		],
 	},
 	section1Fields: [
-		{ name: "First Name", id: "first-name", type: "text" },
+		{ name: "First Name", id: "first-name", type: "text", defaultValue: JSON.parse(window.localStorage.getItem("googleDetails")).name[0] },
 		{ name: "Second Name", id: "second-name", type: "text" },
-		{ name: "Last Name", id: "last-name", type: "text" },
+		{ name: "Last Name", id: "last-name", type: "text", defaultValue: JSON.parse(window.localStorage.getItem("googleDetails")).name[1] },
 		{ name: "Gender", id: "gender", type: "text" },
 		{ name: "Religion", id: "religion", type: "text" },
 		{ name: "Date Of Birth", id: "dob", label: "Date of Birth on the Passport", type: "date" },
@@ -64,7 +64,7 @@ const state = {
 		{ name: "Height In CM", id: "height", type: "text" },
 	],
 	section2Fields: [
-		{ name: "Email", id: "email", type: "email" },
+		{ name: "Email", id: "email", type: "email", defaultValue: JSON.parse(window.localStorage.getItem("googleDetails")).email },
 		{ name: "Applicant Password", id: "password", type: "text" },
 		{ name: "Primary Contact Number", id: "c-1", type: "text" },
 		{ name: "Secondary Contact Number", id: "c-2", type: "text" },
@@ -242,7 +242,9 @@ function onSignIn(googleUser) {
 }
 const form = () => {
 	let googleDetails = window.localStorage.getItem("googleDetails");
+	let parsedGoogleDetails = JSON.parse(googleDetails);
 	console.log(JSON.parse(googleDetails));
+	console.log(parsedGoogleDetails);
 	if (!window.localStorage.getItem("oneFmToken")) {
 		alert("Please Login");
 		window.location = "./";
@@ -263,7 +265,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" value="${a.defaultValue}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" value="${a.defaultValue ? a.defaultValue : ""}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
