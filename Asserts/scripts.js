@@ -50,9 +50,9 @@ const state = {
 		],
 	},
 	section1Fields: [
-		{ name: "First Name", id: "first-name", type: "text", defaultValue: "hello" },
+		{ name: "First Name", id: "first-name", type: "text", defaultValue: googleDetails.name[0] },
 		{ name: "Second Name", id: "second-name", type: "text" },
-		{ name: "Last Name", id: "last-name", type: "text" },
+		{ name: "Last Name", id: "last-name", type: "text", defaultValue: googleDetails.name[1] },
 		{ name: "Gender", id: "gender", type: "text" },
 		{ name: "Religion", id: "religion", type: "text" },
 		{ name: "Date Of Birth", id: "dob", label: "Date of Birth on the Passport", type: "date" },
@@ -66,7 +66,7 @@ const state = {
 		{ name: "Height In CM", id: "height", type: "text" },
 	],
 	section2Fields: [
-		{ name: "Email", id: "email", type: "email" },
+		{ name: "Email", id: "email", type: "email", defaultValue: googleDetails.email },
 		{ name: "Applicant Password", id: "password", type: "text" },
 		{ name: "Primary Contact Number", id: "c-1", type: "text" },
 		{ name: "Secondary Contact Number", id: "c-2", type: "text" },
