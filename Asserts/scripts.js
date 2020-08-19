@@ -214,6 +214,13 @@ const login = () => {
 		dangerMode: true,
 	});
 };
+function onSignIn(googleUser) {
+	var profile = googleUser.getBasicProfile();
+	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	console.log('Name: ' + profile.getName());
+	console.log('Image URL: ' + profile.getImageUrl());
+	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
 const form = () => {
 	if (!window.localStorage.getItem("oneFmToken")) {
 		alert("Please Login");
@@ -232,7 +239,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -243,7 +250,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -254,7 +261,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -265,7 +272,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -276,7 +283,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -287,7 +294,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -298,7 +305,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -309,7 +316,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -320,7 +327,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)

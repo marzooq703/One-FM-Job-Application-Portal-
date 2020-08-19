@@ -116,6 +116,9 @@ button {
 	-moz-box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, 0.75);
 	box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, 0.75);
 }
+.abcRioButtonLightBlue {
+	margin-top: 20px;
+}
 .submit-arrow {
 	display: none;
 }

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="34188756959-86lecq1abbjg09a0licraa4589c88jjk.apps.googleusercontent.com">
+    <meta name="google-signin-client_id"
+        content="34188756959-86lecq1abbjg09a0licraa4589c88jjk.apps.googleusercontent.com">
     <title>One FM Job Application Portal | LOGIN</title>
     <link rel="stylesheet" href="./Asserts/style.css" />
     <!-- Bootstrap CDN -->
@@ -19,7 +20,6 @@
                 <h3 class="header-text"><b>ONE FM</b> - Job Application &#10095; LOGIN</h3>
                 <!-- <h3 class="header-text">LOGIN</h3> -->
             </div> <br />
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
             <div class="form-group">
                 <label for="login-email">Email address</label>
                 <input type="email" class="form-control" id="login-email" placeholder="Enter Your email id">
@@ -43,7 +43,11 @@
             <button class="custom-button" onclick="login()">Submit
                 <img src="./Asserts/images/right-arrow-hallow.png" class="submit-arrow" height="40px" />
             </button>
+            <div class="g-signin2 g-button" data-onsuccess="onSignIn"></div>
         </div>
+    </div>
+    <div class="container">
+
     </div>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="./Asserts/scripts.js"></script>
