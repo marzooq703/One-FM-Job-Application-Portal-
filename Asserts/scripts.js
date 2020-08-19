@@ -1,4 +1,6 @@
 // This is the main Javascript File
+const googleDetails = JSON.parse(window.localStorage.getItem("googleDetails"));
+console.log(googleDetails);
 const state = {
 	passwordState: "hidden",
 	errors: [],
@@ -48,9 +50,9 @@ const state = {
 		],
 	},
 	section1Fields: [
-		{ name: "First Name", id: "first-name", type: "text", defaultValue: JSON.parse(window.localStorage.getItem("googleDetails")).name[0] },
+		{ name: "First Name", id: "first-name", type: "text", defaultValue: "hello" },
 		{ name: "Second Name", id: "second-name", type: "text" },
-		{ name: "Last Name", id: "last-name", type: "text", defaultValue: JSON.parse(window.localStorage.getItem("googleDetails")).name[1] },
+		{ name: "Last Name", id: "last-name", type: "text" },
 		{ name: "Gender", id: "gender", type: "text" },
 		{ name: "Religion", id: "religion", type: "text" },
 		{ name: "Date Of Birth", id: "dob", label: "Date of Birth on the Passport", type: "date" },
@@ -64,7 +66,7 @@ const state = {
 		{ name: "Height In CM", id: "height", type: "text" },
 	],
 	section2Fields: [
-		{ name: "Email", id: "email", type: "email", defaultValue: JSON.parse(window.localStorage.getItem("googleDetails")).email },
+		{ name: "Email", id: "email", type: "email" },
 		{ name: "Applicant Password", id: "password", type: "text" },
 		{ name: "Primary Contact Number", id: "c-1", type: "text" },
 		{ name: "Secondary Contact Number", id: "c-2", type: "text" },
@@ -276,7 +278,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" value="${a.defaultValue ? a.defaultValue : ""}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
