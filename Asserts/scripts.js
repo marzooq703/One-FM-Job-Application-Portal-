@@ -48,9 +48,9 @@ const state = {
 		],
 	},
 	section1Fields: [
-		{ name: "First Name", id: "first-name", type: "text" },
-		{ name: "Second Name", id: "second-name", type: "text" },
-		{ name: "Last Name", id: "last-name", type: "text" },
+		{ name: "First Name", id: "first-name", type: "text", defaultValue: window.localStorage.getItem("googleDetails").firstName },
+		{ name: "Second Name", id: "second-name", type: "text", defaultValue: window.localStorage.getItem("googleDetails").secondName },
+		{ name: "Last Name", id: "last-name", type: "text", defaultValue: window.localStorage.getItem("googleDetails").lastName },
 		{ name: "Gender", id: "gender", type: "text" },
 		{ name: "Religion", id: "religion", type: "text" },
 		{ name: "Date Of Birth", id: "dob", label: "Date of Birth on the Passport", type: "date" },
@@ -216,12 +216,20 @@ const login = () => {
 };
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
-	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	console.log('Name: ' + profile.getName());
-	console.log('Image URL: ' + profile.getImageUrl());
-	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	let fullName = profile.getId().split(" ");
+	let firstName = fullName[0];
+	let lastName, secondName;
+	if (fullName.length > 1)
+		secondName = fullName[1], lastName = fullName[2];
+	else
+		lastName = fullName[1];
+	window.localStorage.setItem("oneFmToken", "dummyTokenAsOfNow");
+	window.localStorage.setItem("googleDetails", { firstName, secondName, lastName, email: profile.getEmail() });
+	window.localStorage.setItem("sectionState", "section_0");
+	window.location = "form.html";
 }
 const form = () => {
+	console.log(window.localStorage.getItem("googleDetails"));
 	if (!window.localStorage.getItem("oneFmToken")) {
 		alert("Please Login");
 		window.location = "./";
@@ -239,7 +247,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+					}" value="${a.defaultValue}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
