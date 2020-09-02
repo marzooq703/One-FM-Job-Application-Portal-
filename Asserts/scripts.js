@@ -194,6 +194,7 @@ async function postData(url = "", data = {}) {
 const linkedIn = () => {
 	console.log("clicked");
 	window.localStorage.setItem("linkedIn", true);
+	window.localStorage.setItem("oneFmToken", "dummyTokenAsOfNow");
 	window.location =
 		"https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78q6xv6hcsf430&redirect_uri=https%3A%2F%2Fone-fm-job-application-portal.vercel.app%2Fform.html&scope=r_liteprofile%20r_emailaddress";
 };
