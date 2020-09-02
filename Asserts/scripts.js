@@ -204,14 +204,21 @@ const getLinkedInData = async () => {
 	console.log("code", code);
 	let getAccessToken = `https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=${code}&redirect_uri=https://one-fm-job-application-portal.vercel.app/form.html&client_id=78q6xv6hcsf430&client_secret=PVnMPHKawL5UBgRD`;
 	console.log("getAccessToken", getAccessToken);
-	const res = await axios.post(getAccessToken).then(
-		(response) => {
-			console.log(response);
-		},
-		(error) => {
-			console.log(error);
-		}
-	);
+	const res = await axios
+		.post(getAccessToken, {
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+				Accept: "*/*",
+			},
+		})
+		.then(
+			(response) => {
+				console.log(response);
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
 	console.log(res);
 	// postData(getAccessToken).then((token) => {
 	// 	console.log(token);
