@@ -206,7 +206,11 @@ const getLinkedInData = () => {
 	console.log("getAccessToken", getAccessToken);
 	fetch(getAccessToken, {
 		method: "POST",
-	});
+	})
+		.then((a) => {
+			console.log(a);
+		})
+		.error((err) => console.log(err));
 	// postData(getAccessToken).then((token) => {
 	// 	console.log(token);
 	// 	fetch("https://api.linkedin.com/v2/me", {
