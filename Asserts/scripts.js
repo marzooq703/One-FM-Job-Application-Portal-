@@ -198,19 +198,21 @@ const linkedIn = () => {
 	window.location =
 		"https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78q6xv6hcsf430&redirect_uri=https%3A%2F%2Fone-fm-job-application-portal.vercel.app%2Fform.html&scope=r_liteprofile%20r_emailaddress";
 };
-const getLinkedInData = () => {
+const getLinkedInData = async () => {
 	window.localStorage.setItem("linkedIn", false);
 	const code = window.location.search.slice(6);
 	console.log("code", code);
 	let getAccessToken = `https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=${code}&redirect_uri=https://one-fm-job-application-portal.vercel.app/form.html&client_id=78q6xv6hcsf430&client_secret=PVnMPHKawL5UBgRD`;
 	console.log("getAccessToken", getAccessToken);
-	fetch(getAccessToken, {
-		method: "POST",
-	})
-		.then((a) => {
-			console.log(a);
-		})
-		.error((err) => console.log(err));
+	const res = await axios.post(getAccessToken).then(
+		(response) => {
+			console.log(response);
+		},
+		(error) => {
+			console.log(error);
+		}
+	);
+	console.log(res);
 	// postData(getAccessToken).then((token) => {
 	// 	console.log(token);
 	// 	fetch("https://api.linkedin.com/v2/me", {
