@@ -204,17 +204,28 @@ const getLinkedInData = () => {
 	console.log("code", code);
 	let getAccessToken = `https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=${code}&redirect_uri=https://one-fm-job-application-portal.vercel.app/form.html&client_id=78q6xv6hcsf430&client_secret=PVnMPHKawL5UBgRD`;
 	console.log("getAccessToken", getAccessToken);
-	postData(getAccessToken).then((token) => {
-		console.log(token);
-		fetch("https://api.linkedin.com/v2/me", {
-			headers: {
-				Authorization: `Bearer ${token.access_token}`,
-			},
-		}).then((userData) => {
-			console.log(userData);
-			window.localStorage.setItem("userData", userData);
-		});
-	});
+	fetch(getAccessToken, {
+		method: "POST",
+		mode: "cors",
+		cache: "no-cache",
+		credentials: "same-origin",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		redirect: "follow",
+		referrerPolicy: "no-referrer",
+	}
+	// postData(getAccessToken).then((token) => {
+	// 	console.log(token);
+	// 	fetch("https://api.linkedin.com/v2/me", {
+	// 		headers: {
+	// 			Authorization: `Bearer ${token.access_token}`,
+	// 		},
+	// 	}).then((userData) => {
+	// 		console.log(userData);
+	// 		window.localStorage.setItem("userData", userData);
+	// 	});
+	// });
 };
 if (window.localStorage.getItem("linkedIn")) {
 	getLinkedInData();
