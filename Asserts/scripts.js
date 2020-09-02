@@ -206,15 +206,7 @@ const getLinkedInData = () => {
 	console.log("getAccessToken", getAccessToken);
 	fetch(getAccessToken, {
 		method: "POST",
-		mode: "cors",
-		cache: "no-cache",
-		credentials: "same-origin",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		redirect: "follow",
-		referrerPolicy: "no-referrer",
-	}
+	});
 	// postData(getAccessToken).then((token) => {
 	// 	console.log(token);
 	// 	fetch("https://api.linkedin.com/v2/me", {
