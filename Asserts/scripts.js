@@ -50,9 +50,19 @@ const state = {
 		],
 	},
 	section1Fields: [
-		{ name: "First Name", id: "first-name", type: "text", defaultValue: googleDetails.name[0] },
+		{
+			name: "First Name",
+			id: "first-name",
+			type: "text",
+			defaultValue: googleDetails?.name[0],
+		},
 		{ name: "Second Name", id: "second-name", type: "text" },
-		{ name: "Last Name", id: "last-name", type: "text", defaultValue: googleDetails.name[1] },
+		{
+			name: "Last Name",
+			id: "last-name",
+			type: "text",
+			defaultValue: googleDetails?.name[1],
+		},
 		{ name: "Gender", id: "gender", type: "text" },
 		{ name: "Religion", id: "religion", type: "text" },
 		{ name: "Date Of Birth", id: "dob", label: "Date of Birth on the Passport", type: "date" },
@@ -66,7 +76,7 @@ const state = {
 		{ name: "Height In CM", id: "height", type: "text" },
 	],
 	section2Fields: [
-		{ name: "Email", id: "email", type: "email", defaultValue: googleDetails.email },
+		{ name: "Email", id: "email", type: "email", defaultValue: googleDetails?.email },
 		{ name: "Applicant Password", id: "password", type: "text" },
 		{ name: "Primary Contact Number", id: "c-1", type: "text" },
 		{ name: "Secondary Contact Number", id: "c-2", type: "text" },
@@ -165,9 +175,53 @@ const state = {
 		},
 	],
 };
-const serverData = async () => {
-	const jobOpenings = await fetch("https://dev.one-fm.com/api/resource/Job Opening");
+async function postData(url = "", data = {}) {
+	// Default options are marked with *
+	const response = await fetch(url, {
+		method: "POST",
+		mode: "cors",
+		cache: "no-cache",
+		credentials: "same-origin",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		redirect: "follow",
+		referrerPolicy: "no-referrer",
+		body: JSON.stringify(data),
+	});
+	return response.json();
+}
+const linkedIn = () => {
+	console.log("clicked");
+	window.localStorage.setItem("linkedIn", true);
+	window.location =
+		"https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78q6xv6hcsf430&redirect_uri=https%3A%2F%2Fone-fm-job-application-portal.vercel.app%2Fform.html&scope=r_liteprofile%20r_emailaddress";
 };
+const getLinkedInData = () => {
+	window.localStorage.setItem("linkedIn", false);
+	const code = window.location.search.slice(6);
+	console.log("code", code);
+	let getAccessToken = `https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=${code}&redirect_uri=https://one-fm-job-application-portal.vercel.app/form.html&client_id=78q6xv6hcsf430&client_secret=PVnMPHKawL5UBgRD`;
+	console.log("getAccessToken", getAccessToken);
+	postData(getAccessToken).then((token) => {
+		console.log(token);
+		fetch("https://api.linkedin.com/v2/me", {
+			headers: {
+				Authorization: `Bearer ${token.access_token}`,
+			},
+		}).then((userData) => {
+			console.log(userData);
+			window.localStorage.setItem("userData", userData);
+		});
+	});
+};
+if (window.localStorage.getItem("linkedIn")) {
+	getLinkedInData();
+}
+
+// const serverData = async () => {
+// 	const jobOpenings = await fetch("https://dev.one-fm.com/api/resource/Job Opening");
+// };
 const selectPosting = () => {
 	const selectPost = `<div class="form-group">
 	<label for="exampleFormControlSelect1">Job Openings</label>
@@ -178,7 +232,7 @@ const selectPosting = () => {
 	let selectPostElement = document.getElementById("selectPost");
 	selectPostElement.innerHTML = selectPost;
 };
-serverData();
+// serverData();
 const showPassword = () => {
 	const closedEye = "./Asserts/images/eye-close.svg";
 	const openEye = "./Asserts/images/eye-open.svg";
@@ -259,9 +313,9 @@ const form = () => {
 			.map(
 				(a) => `<div class="form-group">
 		<label for="${a.id}">${a.name}</label>
-		<input type="${a.type}" class="form-control" id="${
-					a.id
-					}" value="${a.defaultValue ? a.defaultValue : ""}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+		<input type="${a.type}" class="form-control" id="${a.id}" value="${
+					a.defaultValue ? a.defaultValue : ""
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -270,9 +324,9 @@ const form = () => {
 			.map(
 				(a) => `<div class="form-group">
 		<label for="${a.id}">${a.name}</label>
-		<input type="${a.type}" class="form-control" id="${
-					a.id
-					}" value="${a.defaultValue ? a.defaultValue : ""}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+		<input type="${a.type}" class="form-control" id="${a.id}" value="${
+					a.defaultValue ? a.defaultValue : ""
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -283,7 +337,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -294,7 +348,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -305,7 +359,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -316,7 +370,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -327,7 +381,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -338,7 +392,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -349,7 +403,7 @@ const form = () => {
 		<label for="${a.id}">${a.name}</label>
 		<input type="${a.type}" class="form-control" id="${
 					a.id
-					}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
+				}" aria-describedby="emailHelp" placeholder="Enter Your ${a.name}">
 		${a.label ? `<small class="form-text text-muted">${a.label}</small>` : ""}
 	  </div>`
 			)
@@ -370,8 +424,7 @@ const previous = () => {
 	const remainingSections = document.getElementById("section-remaining");
 	if (window.localStorage.getItem("sectionState") == "section_0") {
 		window.location = "./";
-	}
-	else {
+	} else {
 		const currentSectionNumber = window.localStorage
 			.getItem("sectionState")
 			.charAt(window.localStorage.getItem("sectionState").length - 1);
