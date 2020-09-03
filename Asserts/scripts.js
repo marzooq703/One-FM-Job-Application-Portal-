@@ -183,11 +183,10 @@ async function postData(url = "", data = {}) {
 		cache: "no-cache",
 		credentials: "same-origin",
 		headers: {
-			"Content-Type": "application/json",
+			"Content-Type": "application/x-www-form-urlencoded",
 		},
 		redirect: "follow",
 		referrerPolicy: "no-referrer",
-		body: JSON.stringify(data),
 	});
 	return response.json();
 }
@@ -202,19 +201,22 @@ const getLinkedInData = async () => {
 	window.localStorage.setItem("linkedIn", false);
 	const code = window.location.search.slice(6);
 	console.log("code", code);
-	let getAccessToken = `https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=${code}&redirect_uri=https://one-fm-job-application-portal.vercel.app/form.html&client_id=78q6xv6hcsf430&client_secret=PVnMPHKawL5UBgRD`;
-	console.log("getAccessToken", getAccessToken);
-	const config = {
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded",
-		},
-	};
+	// let getAccessToken = `https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=${code}&redirect_uri=https://one-fm-job-application-portal.vercel.app/form.html&client_id=78q6xv6hcsf430&client_secret=PVnMPHKawL5UBgRD`;
+	// console.log("getAccessToken", getAccessToken);
+	// var url = new URL('https://www.linkedin.com/oauth/v2/accessToken')
+	// var params = {grant_type:"authorization_code", code:code, redirect_uri: "https://one-fm-job-application-portal.vercel.app/form.html", client_id: "78q6xv6hcsf430", client_secret: "PVnMPHKawL5UBgRD" }
+	// url.search = new URLSearchParams(params).toString();
+	// console.log("url", url);
+	// postData(url, code).then((token) => {
+	// 	console.log(token)
+	// });
+	// const config = {
+	// 	headers: {
+	// 		"Content-Type": "application/x-www-form-urlencoded",
+	// 	},
+	// };
 	axios
-		.post(
-			"https://www.linkedin.com/oauth/v2/accessToken",
-			`grant_type=authorization_code&code=${code}&redirect_uri=https://one-fm-job-application-portal.vercel.app/form.html&client_id=78q6xv6hcsf430&client_secret=PVnMPHKawL5UBgRD`,
-			config
-		)
+		.post("http://localhost:8080/api/accessCode", {code: "AQTqhulTkbo4jgNkW6OwCte2npA7I5zazdNzkiTJzoi7ItTVGLC2rh09R3dt5U1-u2KXYR1RYLUUWRE8jaMDd7tHP9JIlwU3pKSC3pxpbHPHP-jINpgXEZWx4Q1wA0fsjWhUelj7y4AdE-vX5fd8B8kkfgHb_D4_oziSSwG0z3ANXEGnmdLXXql22CDRcg"})
 		.then((result) => {
 			console.log(result);
 		})
