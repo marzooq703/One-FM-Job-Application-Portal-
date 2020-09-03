@@ -216,7 +216,7 @@ const getLinkedInData = async () => {
 	// 	},
 	// };
 	axios
-		.post("http://localhost:8080/api/accessCode", {code: "AQTqhulTkbo4jgNkW6OwCte2npA7I5zazdNzkiTJzoi7ItTVGLC2rh09R3dt5U1-u2KXYR1RYLUUWRE8jaMDd7tHP9JIlwU3pKSC3pxpbHPHP-jINpgXEZWx4Q1wA0fsjWhUelj7y4AdE-vX5fd8B8kkfgHb_D4_oziSSwG0z3ANXEGnmdLXXql22CDRcg"})
+		.post("https://linked-be.marzooq703.vercel.app/api/accessCode", {code: "AQTqhulTkbo4jgNkW6OwCte2npA7I5zazdNzkiTJzoi7ItTVGLC2rh09R3dt5U1-u2KXYR1RYLUUWRE8jaMDd7tHP9JIlwU3pKSC3pxpbHPHP-jINpgXEZWx4Q1wA0fsjWhUelj7y4AdE-vX5fd8B8kkfgHb_D4_oziSSwG0z3ANXEGnmdLXXql22CDRcg"})
 		.then((result) => {
 			console.log(result);
 		})
